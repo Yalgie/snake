@@ -56,6 +56,11 @@ $(function() {
                     $tail.css("left", x - movementSpeed);
                 }
             }
+
+            x = $tail.position().left;
+            y = $tail.position().top;
+
+            worldWrap(x, y, $tail);
         });
 
         moveArr = moveArr.slice(0, $tails.length);
@@ -86,6 +91,7 @@ $(function() {
         y = $player.position().top;
 
         checkFoodCollision(x, y);
+        worldWrap(x, y, $player);
     };
 
     var spawnFood = function() {
@@ -125,6 +131,21 @@ $(function() {
         $new.css("left", pos.left);
 
         $player.parent().append($new)
+    };
+
+    var worldWrap = function(x, y, $e) {
+        if (x == (width)) {
+            $e.css("left", 0);
+        }
+        if (y == (height)) {
+            $e.css("top", 0);
+        }
+        if (x == -10) {
+            $e.css("left", width - 10);
+        }
+        if (y == -10) {
+            $e.css("top", height - 10);
+        }
     };
 
     var update = setInterval(function () {
