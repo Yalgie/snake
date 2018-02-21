@@ -1,26 +1,33 @@
 $(function() {
     var updateInterval = 150;
-    var width = 500;
-    var height = 500;
+    var width = 350;
+    var height = 350;
     var $player = $("#player .head");
+    var $score = $("#score");
     var $game = $("#game");
     var dir = "down"; // false
     var movementSpeed = 10;
     var pause = false;
     var moveArr = [];
+    var update;
+    var score = 0;
 
     var bindKeys = function() {
         $(window).keydown(function (e) {
-            if (e.which == 87) {
+            if (e.which == 87 && dir != "down" ||
+                e.which == 38 && dir != "down") {
                 dir = "up";
             } 
-            if (e.which == 68) {
+            if (e.which == 68 && dir != "left" ||
+                e.which == 39 && dir != "left") {
                 dir = "right";
             } 
-            if (e.which == 83) {
+            if (e.which == 83 && dir != "up" ||
+                e.which == 40 && dir != "up") {
                 dir = "down";
             } 
-            if (e.which == 65) {
+            if (e.which == 65 && dir != "right" ||
+                e.which == 37 && dir != "right") {
                 dir = "left";
             }
         });
@@ -46,13 +53,13 @@ $(function() {
                 if (ins == "up") {
                     $tail.css("top", y - movementSpeed);
                 }
-                else if (ins == "right") {
+                if (ins == "right") {
                     $tail.css("left", x + movementSpeed);
                 }
-                else if (ins == "down") {
+                if (ins == "down") {
                     $tail.css("top", y + movementSpeed);
                 }
-                else if (ins == "left") {
+                if (ins == "left") {
                     $tail.css("left", x - movementSpeed);
                 }
             }
@@ -91,17 +98,20 @@ $(function() {
         y = $player.position().top;
 
         checkFoodCollision(x, y);
+        checkBodyCollision(x, y);
         worldWrap(x, y, $player);
     };
 
     var spawnFood = function() {
         var $food = $("<div id='food'>");
 
-        var x = Math.floor(Math.random() * $game.width() - 10) + 0
-        var y = Math.floor(Math.random() * $game.height() - 10) + 0
+        var x = Math.floor(Math.random() * width - 10) + 0
+        var y = Math.floor(Math.random() * height - 10) + 0
 
         x = Math.ceil(x / 10) * 10;
         y = Math.ceil(y / 10) * 10;
+
+        console.log(x, y)
 
         $food.css("top", y);
         $food.css("left", x);
@@ -120,7 +130,15 @@ $(function() {
             $food.remove();
             addSegment();
             spawnFood();
+            clearInterval(update);
+            updateInterval -= 5;
+            score++;
+            bindUpdate();
         }
+    };
+
+    var checkBodyCollision = function(x, y) {
+        
     };
 
     var addSegment = function() {
@@ -148,12 +166,16 @@ $(function() {
         }
     };
 
-    var update = setInterval(function () {
-        if (!pause) {
-            movement();
-        }
-    }, updateInterval);
-    
+    function bindUpdate() {
+        $score.html(score)
+        update = setInterval(function () {
+            if (!pause) {
+                movement();
+            }
+        }, updateInterval);
+    }
+
+    bindUpdate();
     bindKeys();
     spawnFood();
 

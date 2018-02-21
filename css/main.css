@@ -3,12 +3,19 @@
 }
 
 body {
-	background-color: #333;
+	background-color: #222;
+	overflow: hidden;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	height: 375px;
+	width: 350px;
+	transform: translateX(-50%) translateY(-50%);
 }
 
 html {
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
+	-moz-box-sizing: border-box;wa
 	box-sizing: border-box;
 }
 
@@ -20,11 +27,32 @@ html {
 	box-sizing: inherit;
 }
 
+#hud {
+	width: 350px;
+	background-color: #333;
+	color: #FFF;
+	height: 25px;
+}
+
+#hud p,
+#hud #score {
+	float: left;
+	display: block;
+	padding: 5px;
+	text-transform: uppercase;
+	font-family: arial;
+}
+
+#hud #score {
+	float: right;
+}
+
 #game,
 #player {
-	width: 500px;
-	height: 500px;
+	width: 350px;
+	height: 350px;
 	background-color: #000;
+	position: relative;
 }
 
 #player {
