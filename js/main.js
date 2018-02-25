@@ -12,6 +12,12 @@ $(function() {
     var update;
     var score = 0;
 
+    var $all = $("#controls img").hide();
+    var $up = $(".up");
+    var $left = $(".left");
+    var $right = $(".right");
+    var $down = $(".down");
+
     var bindKeys = function() {
         $(window).keydown(function (e) {
             if (e.which == 87 && dir != "down" ||
@@ -80,18 +86,26 @@ $(function() {
         if (dir == "up") {
             moveArr.unshift("up");
             $player.css("top", y - movementSpeed);
+            $all.hide()
+            $up.show()
         }
         else if (dir == "right") {
             moveArr.unshift("right");
             $player.css("left", x + movementSpeed);
+            $all.hide()
+            $right.show()
         }
         else if (dir == "down") {
             moveArr.unshift("down");
             $player.css("top", y + movementSpeed);
+            $all.hide()
+            $down.show()
         }
         else if (dir == "left") {
             moveArr.unshift("left");
             $player.css("left", x - movementSpeed);
+            $all.hide()
+            $left.show()
         }
 
         x = $player.position().left;

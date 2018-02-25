@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<title>Snake</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/main.js"></script>
@@ -9,23 +10,19 @@
 <body>
 	<div id="hud">
 		<p>Snake</p>
-		<div id="score"></DIV>
+		<div id="time">0:00</div>
+		<div id="score"></div>
 	</div>
 	<div id="game">
 		<div id="player">
 			<div class="head"></div>
-			<!-- <div class="tail"></div>
-			<div class="tail"></div>
-			<div class="tail"></div>
-			<div class="tail"></div>
-			<div class="tail"></div>
-			<div class="tail"></div>
-			<div class="tail"></div>
-			<div class="tail"></div>
-			<div class="tail"></div>
-			<div class="tail"></div>
-			<div class="tail"></div> -->
 		</div>
+	</div>
+	<div id="controls">
+		<img src="assets/up.png" class="up">
+		<img src="assets/down.png" class="down">
+		<img src="assets/left.png" class="left">
+		<img src="assets/right.png" class="right">
 	</div>
 </body>
 </html>
