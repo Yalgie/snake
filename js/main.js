@@ -138,7 +138,20 @@ $(function() {
     };
 
     var checkBodyCollision = function(x, y) {
-        
+        var $tails = $("#player .tail");
+
+        if ($tails.length >= 2) {
+            $tails.each(function(i, tail) {
+                var $tail = $(tail);
+
+                var tX = $tail.position().left;
+                var tY = $tail.position().top;
+
+                if (tX == x && tY == y) {
+                    window.location.reload()
+                }
+            });
+        }
     };
 
     var addSegment = function() {
@@ -178,14 +191,4 @@ $(function() {
     bindUpdate();
     bindKeys();
     spawnFood();
-
-    // Debuging
-
-    window.pause = function() {
-        pause = true;
-    };
-
-    window.play = function () {
-        pause = false;
-    };
 });
