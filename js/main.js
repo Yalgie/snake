@@ -125,7 +125,18 @@ $(function() {
         x = Math.ceil(x / 10) * 10;
         y = Math.ceil(y / 10) * 10;
 
-        console.log(x, y)
+        if (y == 0) {
+            y = 10;
+        }
+        if (x == 0) {
+            x = 10;
+        }
+        if (y == height) {
+            y = height - 10;
+        }
+        if (x == width) {
+            x = width - 10;
+        }
 
         $food.css("top", y);
         $food.css("left", x);
@@ -205,4 +216,5 @@ $(function() {
     bindUpdate();
     bindKeys();
     spawnFood();
+    
 });
