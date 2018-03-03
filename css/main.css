@@ -73,27 +73,34 @@ html {
 	width: 10px;
 	height: 10px;
 	border-radius: 10px;
-	border: 1px solid white;
+	/* border: 1px solid white; */
 	position: absolute;
 	display: block;
 	top: 0px;
 	left: 0px;
+
+	background: url(../assets/worm.png);
+	background-position-x: 0px;
+	background-position-y: 30px;
 }
 
 .head {
 	top: 240px;
 	left: 240px;
-	border-color: red;
+	/* border-color: red; */
+	background-position-y: 0px;
 }
 
 #food {
 	top: 0px;
 	left: 0px;
-	border-color: green;
+	/* border-color: green; */
+	background-position-y: 10px;
 }
 
 .tail:last-child {
-	border-color: purple;
+	/* border-color: purple; */
+	background-position-y: 20px;
 }
 
 #controls {

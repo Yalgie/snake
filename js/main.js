@@ -11,6 +11,7 @@ $(function() {
     var moveArr = [];
     var update;
     var score = 0;
+    var xPos = 0;
 
     var $all = $("#controls img").hide();
     var $up = $(".up");
@@ -58,15 +59,19 @@ $(function() {
             if (ins != undefined) {
                 if (ins == "up") {
                     $tail.css("top", y - movementSpeed);
+                    $tail.css("transform", "rotate(0deg)");
                 }
                 if (ins == "right") {
                     $tail.css("left", x + movementSpeed);
+                    $tail.css("transform", "rotate(90deg)");
                 }
                 if (ins == "down") {
                     $tail.css("top", y + movementSpeed);
+                    $tail.css("transform", "rotate(180deg)");
                 }
                 if (ins == "left") {
                     $tail.css("left", x - movementSpeed);
+                    $tail.css("transform", "rotate(-90deg)");
                 }
             }
 
@@ -88,24 +93,28 @@ $(function() {
             $player.css("top", y - movementSpeed);
             $all.hide()
             $up.show()
+            $player.css("transform", "rotate(0deg)");
         }
         else if (dir == "right") {
             moveArr.unshift("right");
             $player.css("left", x + movementSpeed);
             $all.hide()
             $right.show()
+            $player.css("transform", "rotate(90deg)");
         }
         else if (dir == "down") {
             moveArr.unshift("down");
             $player.css("top", y + movementSpeed);
             $all.hide()
             $down.show()
+            $player.css("transform", "rotate(180deg)");
         }
         else if (dir == "left") {
             moveArr.unshift("left");
             $player.css("left", x - movementSpeed);
             $all.hide()
             $left.show()
+            $player.css("transform", "rotate(-90deg)");
         }
 
         x = $player.position().left;
@@ -204,11 +213,22 @@ $(function() {
         }
     };
 
+    function animate() {
+        xPos += 10;
+        
+        $player.parent().children().each(function() {
+            $(this).css("background-position-x", xPos);
+        });
+
+        $("#food").css("background-position-x", xPos)
+    }
+
     function bindUpdate() {
         $score.html(score)
         update = setInterval(function () {
             if (!pause) {
                 movement();
+                animate();
             }
         }, updateInterval);
     }
